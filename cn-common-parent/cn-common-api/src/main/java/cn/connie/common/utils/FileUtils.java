@@ -1,18 +1,12 @@
 package cn.connie.common.utils;
 
-import net.coobird.thumbnailator.Thumbnails;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Enumeration;
-import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -20,21 +14,8 @@ public class FileUtils {
 
     private static final ReentrantLock QUEUE_LOCK = new ReentrantLock();
 
-    private static AtomicInteger SERIAL_NUM = new AtomicInteger(0);
+    private static final AtomicInteger SERIAL_NUM = new AtomicInteger(0);
 
-    private static final SimpleDateFormat MONTH_FORMAT = new SimpleDateFormat("yyMM");
-
-    static {
-        InputStream in = FileUtils.class.getClassLoader().getResourceAsStream("file.properties");
-        Properties properties = new Properties();
-        try {
-            properties.load(in);
-            GlobalConfigration.reload(properties);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public static String getUniqueFileName(String fileName) {
         String ext = getExtension(fileName);
@@ -65,37 +46,6 @@ public class FileUtils {
         return ext;
     }
 
-    /**
-     * 保存文件到服务器中，返回文件访问路径
-     *
-     * @param fileName
-     * @param data
-     * @return
-     * @throws IOException
-     */
-    public static String saveFile(String fileName, byte[] data) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        String newFileName = getUniqueFileName(fileName);
-        String dir = sb.append(GlobalConfigration.toString("local_save_path")).append(MONTH_FORMAT.format(new Date())).append("/").toString();
-        sb.append(newFileName);
-
-        File file = new File(dir);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        ByteArrayInputStream in = null;
-        try {
-            in = new ByteArrayInputStream(data);
-            Image src = Toolkit.getDefaultToolkit().createImage(data);
-            BufferedImage image = toBufferedImage(src);
-            Thumbnails.of(image).scale(1f).outputQuality(1f).toFile(sb.toString());
-            return GlobalConfigration.toString("network_access_path") + MONTH_FORMAT.format(new Date()) + "/" + newFileName;
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
-    }
 
     /**
      * 获取服务器IP地址
@@ -111,8 +61,7 @@ public class FileUtils {
                 NetworkInterface ni = (NetworkInterface) netInterfaces.nextElement();
                 ip = ni.getInetAddresses().nextElement();
                 SERVER_IP = ip.getHostAddress();
-                if (!ip.isSiteLocalAddress() && !ip.isLoopbackAddress()
-                        && ip.getHostAddress().indexOf(":") == -1) {
+                if (!ip.isSiteLocalAddress() && !ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {
                     SERVER_IP = ip.getHostAddress();
                     break;
                 }
