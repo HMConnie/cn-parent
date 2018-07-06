@@ -13,10 +13,6 @@
     <!-- 使用zookeeper注册中心暴露服务地址 -->
     <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}"/>
 
-    <import resource="classpath*:consumer/userBusinessRemoteService.xml"/>
-    <import resource="classpath*:consumer/fileBusinessRemoteService.xml"/>
-    <import resource="classpath*:consumer/searchBusinessRemoteService.xml"/>
-    <import resource="classpath*:consumer/communityBusinessRemoteService.xml"/>
-    <import resource="classpath*:consumer/goodsBusinessRemoteService.xml"/>
+    <import resource="classpath*:consumer/*.xml"/>
 
 </beans>
