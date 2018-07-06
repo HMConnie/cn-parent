@@ -14,7 +14,7 @@ public class SearchConsumer extends Consumer {
     @Override
     protected void process(String s) throws Exception {
         // 处理业务
-        LOGGER.error(s);
+        LOGGER.info(s);
     }
 
     @Override
