@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <dubbo:application name="cn-web-api"/>
+
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}"/>
+
+    <import resource="classpath*:consumer/userBusinessRemoteService.xml"/>
+    <import resource="classpath*:consumer/fileBusinessRemoteService.xml"/>
+    <import resource="classpath*:consumer/searchBusinessRemoteService.xml"/>
+    <import resource="classpath*:consumer/communityBusinessRemoteService.xml"/>
+    <import resource="classpath*:consumer/goodsBusinessRemoteService.xml"/>
+
+</beans>

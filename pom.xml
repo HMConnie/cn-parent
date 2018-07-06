@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.connie</groupId>
+    <artifactId>cn-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>cn-user-parent</module>
+        <module>cn-web-parent</module>
+        <module>cn-common-parent</module>
+        <module>cn-file-parent</module>
+        <module>cn-business-parent</module>
+        <module>cn-goods-parent</module>
+        <module>cn-search-parent</module>
+        <module>cn-community-parent</module>
+        <module>cn-job-parent</module>
+    </modules>
+    <properties>
+        <maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
+        <java_source_version>1.7</java_source_version>
+        <java_target_version>1.7</java_target_version>
+        <file_encoding>UTF-8</file_encoding>
+        <maven_source_plugin_version>2.1.1</maven_source_plugin_version>
+        <maven_jar_plugin_version>2.3.2</maven_jar_plugin_version>
+        <maven_war_plugin_version>2.1.1</maven_war_plugin_version>
+        <maven_install_plugin_version>2.3.1</maven_install_plugin_version>
+        <maven_deploy_plugin_version>2.7</maven_deploy_plugin_version>
+        <maven_resources_plugin_version>2.4</maven_resources_plugin_version>
+
+        <spring_version>4.1.7.RELEASE</spring_version>
+        <slf4j_log4j_version>1.7.5</slf4j_log4j_version>
+        <mysql_connector_java_version>5.1.38</mysql_connector_java_version>
+        <junit_version>4.11</junit_version>
+        <zkClient_version>0.1</zkClient_version>
+        <dubbo_version>2.5.3</dubbo_version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring_boot_version>1.2.5.RELEASE</spring_boot_version>
+        <fastjson_version>1.2.14</fastjson_version>
+        <zookeeper_version>3.4.6</zookeeper_version>
+        <slf4j_log4j_version>1.7.21</slf4j_log4j_version>
+        <mybatis_spring_version>1.2.2</mybatis_spring_version>
+        <mybatis_version>3.2.2</mybatis_version>
+        <commons_dbcp_version>1.4</commons_dbcp_version>
+        <aspectjrt_version>1.8.9</aspectjrt_version>
+        <cglib_version>2.1_3</cglib_version>
+        <commons_codec_version>1.10</commons_codec_version>
+
+        <dui1dui_commons_long_version></dui1dui_commons_long_version>
+        <dui1dui_mq_version>0.0.2-SNAPSHOT</dui1dui_mq_version>
+    </properties>
+
+</project>

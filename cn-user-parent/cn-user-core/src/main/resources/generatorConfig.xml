@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+
+    <!-- !!!! Driver Class Path !!!! -->
+    <classPathEntry
+            location="/Users/hinge/Library/maven/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <!-- 这里引入扩展插件 -->
+        <plugin type="com.zxg.MySQLLimitPlugin"></plugin>
+        <plugin type="com.zxg.LockExampleClassPlugin"></plugin>
+        <plugin type="com.zxg.SerializablePlugin"></plugin>
+        <!--suppressAllComments 去除注释 true ，false加上注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- !!!! Database Configurations !!!! -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/cn_user?useUnicode=false&amp;autoReconnect=true&amp;characterEncoding=utf-8"
+                        userId="root" password="123456"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- !!!! Model Configurations !!!! -->
+        <javaModelGenerator targetPackage="cn.connie.user.core.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- !!!! Mapper XML Configurations !!!! -->
+        <sqlMapGenerator targetPackage="cn.connie.user.core.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- !!!! Mapper Interface Configurations !!!! -->
+        <javaClientGenerator targetPackage="cn.connie.user.core.dao" targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- !!!! Table Configurations !!!! -->
+        <table tableName="t_user" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true"
+               enableUpdateByExample="true" domainObjectName="User">
+        </table>
+
+        <!--<table tableName="t_login_user" enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--enableUpdateByExample="true" domainObjectName="LoginUser">-->
+        <!--</table>-->
+    </context>
+</generatorConfiguration>

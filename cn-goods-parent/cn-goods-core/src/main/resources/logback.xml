@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <substitutionProperty name="log.base" value="${LOG_BASE_DIR}"/>
+
+    <!-- 控制台输出日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <Encoding>UTF-8</Encoding>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="FILEOUT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>logModule</key>
+            <defaultValue>other</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${log.base}/cn-goods-core/cn-goods-core.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>
+                        ${log.base}/cn-goods-core/cn-goods-core.log.%d{yyyy-MM-dd}
+                    </fileNamePattern>
+                </rollingPolicy>
+                <append>true</append>
+                <layout class="ch.qos.logback.classic.PatternLayout">
+                    <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+                    </pattern>
+                </layout>
+            </appender>
+        </sift>
+    </appender>
+
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILEOUT"/>
+    </root>
+
+</configuration>
