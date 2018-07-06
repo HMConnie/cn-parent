@@ -20,7 +20,7 @@
 		<!-- 消费者配置 -->
 		<property name="consumerConfig">
 			<map>
-				<entry key="auto.commit.enable" value="false"></entry>
+				<entry key="auto.commit.enable" value="false"/>
                 <entry key="zookeeper.connect" value="${dubbo.registry.address}"/>
                 <entry key="auto.offset.reset" value="smallest"/>
                 <entry key="serializer.class" value="kafka.serializer.StringEncoder"/>
