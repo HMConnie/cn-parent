@@ -78,7 +78,7 @@ public class PushJobHandler extends IJobHandler {
                                     .setApnsProduction(true)
                                     .build()).build();
                     PushResult result = jPushClient.sendPush(payload);
-                    LOGGER.info("jpush send status:", result.getResponseCode());
+                    LOGGER.info("jpush send status:", result.statusCode);
                     return ReturnT.SUCCESS;
                 }
             } catch (Exception e) {
