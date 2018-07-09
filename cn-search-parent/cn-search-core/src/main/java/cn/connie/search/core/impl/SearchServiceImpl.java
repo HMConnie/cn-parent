@@ -46,10 +46,6 @@ public class SearchServiceImpl implements SearchService {
     @Value("${elasticsearch.node.name}")
     private String ELASTICSEARCH_NODE_NAME;
 
-
-    static PreBuiltTransportClient preBuiltTransportClient = null;
-
-
     static TransportClient transportClient = null;
 
 
@@ -59,7 +55,7 @@ public class SearchServiceImpl implements SearchService {
                     .put("cluster.name", ELASTICSEARCH_CLUSTER_NAME)
                     .put("node.name", ELASTICSEARCH_NODE_NAME)
                     .build();
-            preBuiltTransportClient = new PreBuiltTransportClient(settings);
+            PreBuiltTransportClient preBuiltTransportClient = new PreBuiltTransportClient(settings);
             InetAddress inetAddress = InetAddress.getByName(ELASTICSEARCH_HOST);
             InetSocketAddress inetSocketAddress = new InetSocketAddress(inetAddress, Integer.parseInt(ELASTICSEARCH_PORT));
             TransportAddress transportAddress = new TransportAddress(inetSocketAddress);
