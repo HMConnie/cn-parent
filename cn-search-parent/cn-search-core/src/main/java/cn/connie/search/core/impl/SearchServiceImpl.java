@@ -26,7 +26,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -56,11 +55,11 @@ public class SearchServiceImpl implements SearchService {
                     .put("node.name", ELASTICSEARCH_NODE_NAME)
                     .build();
             PreBuiltTransportClient preBuiltTransportClient = new PreBuiltTransportClient(settings);
-            InetAddress inetAddress = InetAddress.getByName(ELASTICSEARCH_HOST);
-            InetSocketAddress inetSocketAddress = new InetSocketAddress(inetAddress, Integer.parseInt(ELASTICSEARCH_PORT));
+            InetSocketAddress inetSocketAddress = new InetSocketAddress(ELASTICSEARCH_HOST, Integer.parseInt(ELASTICSEARCH_PORT));
             TransportAddress transportAddress = new TransportAddress(inetSocketAddress);
             transportClient = preBuiltTransportClient.addTransportAddress(transportAddress);
         }
+
         return transportClient;
     }
 
