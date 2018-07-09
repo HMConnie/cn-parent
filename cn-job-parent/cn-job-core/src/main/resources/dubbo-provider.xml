@@ -18,6 +18,9 @@
     <!-- 声明监控中心 -->
     <dubbo:monitor protocol="registry"/>
 
+    <dubbo:service interface="cn.connie.job.service.PushRemoteService" ref="pushRemoteServiceImpl" version="1.0.0"/>
+
+
     <!-- 声明需要暴露的服务接口 -->
-    <import resource="classpath*:consumer/*.xml" />
+    <import resource="classpath*:consumer/*.xml"/>
 </beans>

@@ -20,7 +20,6 @@ import java.util.List;
 @JobHandler(value = "goodsKeyWordsJobHandler")
 @Component
 public class GoodsKeyWordsJobHandler extends IJobHandler {
-
     private final Logger logger = LoggerFactory.getLogger(GoodsKeyWordsJobHandler.class);
 
     @Autowired

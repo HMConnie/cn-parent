@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
  * ApplicationConfig
  */
 @Configuration
-@ImportResource(value = {"classpath:applicationContext.xml","classpath:dubbo-provider.xml"})
+@ImportResource(value = {"classpath:applicationContext.xml","classpath:dubbo-provider.xml","classpath:redis-config.xml"})
 public class ApplicationConfig {
 
     @Value("${dubbo.registry.address}")

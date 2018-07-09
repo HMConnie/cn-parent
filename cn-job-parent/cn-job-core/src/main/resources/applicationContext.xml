@@ -33,4 +33,10 @@
         <!-- 日志保存天数[选填]，值大于3时生效 -->
         <property name="logRetentionDays" value="${xxl.job.executor.logretentiondays}"/>
     </bean>
+
+    <!--配置极光推送器-->
+    <bean name="jPushClient" class="cn.jpush.api.JPushClient" destroy-method="close">
+        <constructor-arg name="appKey" value="${jpush.appkey}"/>
+        <constructor-arg name="masterSecret" value="${jpush.masterSecret}"/>
+    </bean>
 </beans>
