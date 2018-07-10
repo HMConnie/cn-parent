@@ -21,7 +21,7 @@
     <!-- 注解 -->
     <mvc:annotation-driven>
         <!-- 消息转换器 -->
-        <mvc:message-converters register-defaults="true">
+        <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
