@@ -141,9 +141,9 @@ public class PayServiceImpl implements PayService {
             sort.put("appid", APP_ID);
             sort.put("mch_id", MCH_ID);
             sort.put("nonce_str", Dui1DuiStringUtils.generateUUID());
-            sort.put("body", (weiChatModel.getBody() == null || "".equals(weiChatModel.getBody())) ? "[cn-parent]交易" : "[cn-parent]" + weiChatModel.getBody());
-            sort.put("attach", (weiChatModel.getBody() == null || "".equals(weiChatModel.getBody())) ? "[cn-parent]交易" : "[cn-parent]" + weiChatModel.getBody());
-            sort.put("out_trade_no", weiChatModel.getMerchants_no());
+            sort.put("body", (weiChatModel.getBody() == null || "".equals(weiChatModel.getBody())) ? "[benben]交易" : "[benben]" + weiChatModel.getBody());
+            sort.put("attach", (weiChatModel.getBody() == null || "".equals(weiChatModel.getBody())) ? "[benben]交易" : "[benben]" + weiChatModel.getBody());
+            sort.put("out_trade_no",Dui1DuiStringUtils.generateOrderNo());
             sort.put("total_fee", "" + multiply.longValue());
             sort.put("spbill_create_ip", weiChatModel.getIp());
             sort.put("notify_url", WEIXIN_NOTIFY_URL);

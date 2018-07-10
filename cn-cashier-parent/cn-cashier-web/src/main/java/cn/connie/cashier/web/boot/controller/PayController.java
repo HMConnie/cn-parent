@@ -31,22 +31,20 @@ public class PayController {
         PayResultTO payResultTO;
         String expireTime = getExpireTime();
         String ip = WebUtils.getIp(request);
-        String orderNo = Dui1DuiStringUtils.generateOrderNo();
         if (type == 1) {
             AlipayModel alipayModel = new AlipayModel();
             alipayModel.setTotalFee(price);
             alipayModel.setFailureTimeMinutes(expireTime);
             alipayModel.setIp(ip);
-            alipayModel.setAlipayTradeNo(orderNo);
-            alipayModel.setOutTradeNo(orderNo);
+            alipayModel.setAlipayTradeNo(Dui1DuiStringUtils.generateOrderNo());
+            alipayModel.setOutTradeNo(Dui1DuiStringUtils.generateOrderNo());
             payResultTO = payService.aliPay(alipayModel);
         } else {
             WeiChatModel weiChatModel = new WeiChatModel();
             weiChatModel.setTotal_price(price);
             weiChatModel.setTime_expire(expireTime);
             weiChatModel.setIp(ip);
-            weiChatModel.setMerchants_no(orderNo);
-            weiChatModel.setMerchants_no(orderNo);
+            weiChatModel.setBody("");
             payResultTO = payService.weiChatPay(weiChatModel);
         }
         return ResponseUtils.toSuccessResponse(payResultTO);
