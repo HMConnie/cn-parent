@@ -3,7 +3,6 @@ package cn.connie.common.weichat.model;
 import com.sgcai.commons.lang.base.BasicTO;
 
 public class WeiChatModel extends BasicTO {
-    private String merchants_no;
     private String total_price;
     private String ip;
     private String redirect_url;
@@ -11,13 +10,6 @@ public class WeiChatModel extends BasicTO {
     private String time_expire;
     private String body;
 
-    public String getMerchants_no() {
-        return merchants_no;
-    }
-
-    public void setMerchants_no(String merchants_no) {
-        this.merchants_no = merchants_no;
-    }
 
     public String getTotal_price() {
         return total_price;

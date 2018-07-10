@@ -12,6 +12,7 @@ public class AlipayInfoUtil {
         AlipayInfo alipayInfo = new AlipayInfo();
         alipayInfo.setServicePC("create_direct_pay_by_user");
         alipayInfo.setServiceH5("alipay.wap.create.direct.pay.by.user");
+        alipayInfo.setServiceApp("alipay.trade.app.pay");
         alipayInfo.setServiceRefund("refund_fastpay_by_platform_nopwd");
         alipayInfo.setPartner("2088101846074913");
         alipayInfo.setKey("l2a1m57st1urldekjb9t2686ck7f34vd");
