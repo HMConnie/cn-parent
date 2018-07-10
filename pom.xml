@@ -18,6 +18,7 @@
         <module>cn-search-parent</module>
         <module>cn-community-parent</module>
         <module>cn-job-parent</module>
+        <module>cn-cashier-parent</module>
     </modules>
     <properties>
         <maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
