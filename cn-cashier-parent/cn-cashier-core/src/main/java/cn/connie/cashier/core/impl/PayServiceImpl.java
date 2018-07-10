@@ -48,6 +48,13 @@ public class PayServiceImpl implements PayService {
      */
     private static String MCH_ID = "1494367982";
 
+
+    /**
+     * 支付参数拼接有问题 FIXME: 18/7/10
+     *
+     * @param alipayModel
+     * @return
+     */
     @Override
     public PayResultTO aliPay(AlipayModel alipayModel) {
         PayResultTO result = new PayResultTO();
@@ -68,7 +75,7 @@ public class PayServiceImpl implements PayService {
 
             String extraCommonParam = alipayModel.getExtraCommonParam();
 
-            String service = plipayConfig.serviceH5;
+            String service = plipayConfig.serviceApp;
 
 
             //把请求参数打包成数组
@@ -110,7 +117,6 @@ public class PayServiceImpl implements PayService {
                 sb.append(key).append("=").append(URLEncoder.encode(sPara.get(key), "UTF-8"));
             }
             result.setResult(true);
-            result.setRedirectURL(ALIPAY_GATEWAY_NEW + sb.toString());
             result.setClientParam(sb.toString());
         } catch (Exception e) {
             result.setResult(false);
@@ -143,7 +149,7 @@ public class PayServiceImpl implements PayService {
             sort.put("nonce_str", Dui1DuiStringUtils.generateUUID());
             sort.put("body", (weiChatModel.getBody() == null || "".equals(weiChatModel.getBody())) ? "[benben]交易" : "[benben]" + weiChatModel.getBody());
             sort.put("attach", (weiChatModel.getBody() == null || "".equals(weiChatModel.getBody())) ? "[benben]交易" : "[benben]" + weiChatModel.getBody());
-            sort.put("out_trade_no",Dui1DuiStringUtils.generateOrderNo());
+            sort.put("out_trade_no", Dui1DuiStringUtils.generateOrderNo());
             sort.put("total_fee", "" + multiply.longValue());
             sort.put("spbill_create_ip", weiChatModel.getIp());
             sort.put("notify_url", WEIXIN_NOTIFY_URL);
