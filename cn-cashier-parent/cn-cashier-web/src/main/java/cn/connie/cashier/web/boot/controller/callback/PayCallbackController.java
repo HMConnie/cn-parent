@@ -20,6 +20,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * 支付宝和微信的回调必须是在外网带域名的情况下才能回调
+ */
 @Controller
 @RequestMapping("/callback")
 public class PayCallbackController {
@@ -64,7 +67,6 @@ public class PayCallbackController {
 
     @RequestMapping("/alipayNotifyUrl.html")
     public void alipayNotifyUrl(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         PrintWriter out = null;
         try {
             out = response.getWriter();
