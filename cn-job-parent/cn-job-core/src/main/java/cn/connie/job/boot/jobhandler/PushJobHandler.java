@@ -49,13 +49,31 @@ public class PushJobHandler extends IJobHandler {
     public ReturnT<String> execute(String s) throws Exception {
         BoundListOperations<String, String> listOps = redisTemplate.boundListOps(PUSH_STORE_KEY);
         Long listOpsSize = listOps.size();
-        for (int i = 0; i < listOpsSize; i++) {
-            String json = listOps.leftPop();
-            pushMessage(json);
+        String json = null;
+        try {
+            for (int i = 0; i < listOpsSize; i++) {
+                json = listOps.leftPop();
+                pushMessage(json);
+            }
+        } catch (Exception e) {
+            LOGGER.info("jpush message failed:", e);
+            // 如果发送失败，把这次pop出来的消息，重新push到redis中，防止推送消息丢失
+            if (!StringUtils.isBlank(json)) {
+                listOps.rightPush(json);
+            }
+            return ReturnT.FAIL;
         }
+
         return ReturnT.SUCCESS;
     }
 
+    /**
+     * 发送极光推送
+     *
+     * @param json
+     * @throws APIConnectionException
+     * @throws APIRequestException
+     */
     private void pushMessage(String json) throws APIConnectionException, APIRequestException {
         if (StringUtils.isBlank(json)) return;
 
