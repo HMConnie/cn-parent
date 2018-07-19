@@ -1,0 +1,91 @@
+@charset "utf-8";
+*,
+*:before,
+*:after {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-user-select: -moz-none;
+    -webkit-touch-callout: none;
+    margin: 0;
+    padding: 0;
+    -ms-touch-action: pan-y;  }
+body,button, input{
+    vertical-align: text-top;
+    outline:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none ;
+    box-shadow: none ;
+    -webkit-appearance: none;
+    appearance: none;
+    border:none;
+}
+html, body {
+    height:100%;
+    background: #ffffff;
+    font-size:50px;
+    font-family:Arial;
+    color:#333;
+}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+ul,ol,li{ list-style: none; }
+a { text-decoration: none; }
+i{font-style: normal;}
+img { border: 0; }
+.clear:before, .clear:after {display: table;line-height: 0;content: ""; }
+.clear:after {clear: both; }
+.fl{ float:left;}
+.fr{ float:right;}
+.pr{position: relative;}
+.pa{position: absolute;}
+input::-webkit-input-placeholder{color:#ccc;font-size:0.3rem;}
+
+.header {
+    width: 7.5rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    background: rgba(0, 0, 0, 0.30);
+    margin: 0 auto;
+    overflow: hidden;
+    float: none;
+}
+.close-btn {
+    width: 0.36rem;
+    height: 0.36rem;
+    float: left;
+    background: url("../img/icon-close.png") no-repeat 0 0;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    margin:0.27rem 0 0 0.3rem;
+}
+.icon-logo {
+    height: 0.6rem;
+    width: 0.6rem;
+    background: url("../img/down-app-logo.png") no-repeat 0 0;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    float: left;
+    margin:0.15rem 0 0 0.2rem;
+}
+.down-app-title {
+    color: #ffffff;
+    font-size:0.28rem;
+    margin:0 0 0 0.2rem;
+    vertical-align: text-top;
+}
+.open-app {
+    display: block;
+    width: 1.6rem;
+    height: 0.5rem;
+    background: #D2A475;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    float: right;
+    text-align:center;
+    line-height: 0.5rem;
+    font-size:0.24rem;
+    margin:0.18rem 0.28rem 0 0;
+    color: #FFFFFF;
+}
+
+

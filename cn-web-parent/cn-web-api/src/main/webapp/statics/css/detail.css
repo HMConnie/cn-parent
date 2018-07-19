@@ -1,0 +1,111 @@
+.shareafter {
+    position: relative;
+}
+.shareafter-main {
+    padding: 0 0.28rem;
+}
+h2{
+    margin: 0.4rem 0 0.34rem;
+    font-size: 0.36rem;
+}
+h3 {
+    font-size: 0.24rem;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 0.33rem;
+}
+.name{
+    color: #4d7a60;
+    margin-right: 0.25rem;
+}
+.num{
+    float:right;
+}
+.num:before{
+    content: " ";
+    width:0.32rem;
+    height:0.32rem;
+    display: inline-block;
+    background: url("../img/icon-read@2x.png") no-repeat;
+    background-size: cover;
+    vertical-align: text-bottom;
+    margin-right: 0.1rem;
+}
+.details {
+    max-height:24rem;
+    overflow: hidden;
+}
+img{
+    width: 100%;
+    margin: 0.4rem 0;
+}
+p{
+    font-size: 0.28rem;
+    margin-bottom: 0.26rem;
+    line-height:0.5rem;
+}
+.details1{
+     max-height:99999px;
+ }
+.slide-bg {
+    width: 100%;
+    height: 3rem;
+    background: #f5f5f5;
+    position: absolute;
+    z-index: -1;
+    bottom: 1rem;
+    left: 0;
+    display: none;
+}
+.slide-bg1{
+     display:none;
+ }
+.slide {
+    width: 100%;
+    height: 0.6rem;
+    background: rgba(235, 235, 235, 0.85);
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 1rem;
+    line-height: 0.35rem;
+    display: none;
+}
+.slide1{
+     display: none;
+ }
+.slide i{
+    width:0.44rem;
+    height: 0.44rem;
+    display: inline-block;
+    background: url("../img/icon-open@2x.png") no-repeat;
+    background-size: cover;
+}
+.btn{
+    width:3rem;
+    height:1rem;
+    line-height:1rem;
+    margin: 0 auto 0.4rem;
+    box-shadow: 0 5px 12px 0 #fbe3cb;
+    color: #ffffff;
+    font-size: 0.36rem;
+    background: #d2a475;
+    text-align: center;
+    border-radius: 1rem;
+}
+footer {
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    background: #4d7060;
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.28rem;
+}
+footer a{
+    font-size: 0.24rem;
+    color:#ffffff;
+    padding: 0.1rem 0.2rem;
+    background: #d2a475;
+    border-radius: 1rem;
+    margin-left:0.2rem;
+}
