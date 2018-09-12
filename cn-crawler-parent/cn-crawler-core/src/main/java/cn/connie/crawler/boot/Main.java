@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ContextConfiguration;
 
-@ComponentScan(basePackages = {"cn.connie.user.core"})
+@ComponentScan(basePackages = {"cn.connie.crawler.core"})
 @ImportResource({"classpath:applicationContext.xml", "classpath:database-config.xml", "classpath:dubbo-provider.xml"})
 @ContextConfiguration(classes = ApplicationConfig.class)
 public class Main {
