@@ -1,0 +1,318 @@
+/*reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: Helvetica, 'Microsoft YaHei', sans-serif;
+}
+
+/*common*/
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+ol, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a,
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+/*Detail page start*/
+.p-detail {
+    padding: 0 14px;
+    color: rgb(51, 51, 51);
+}
+
+.p-detail h1 {
+    margin-top: 20px;
+    font-size: 1.8rem;
+    line-height: 1.5em;
+}
+
+.p-detail .info-box {
+    margin-top: 17px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 1.2rem;
+}
+
+.p-detail .info-box span {
+    display: inline-block;
+}
+
+.p-detail .info-box .uname {
+    margin-right: 5px;
+    font-weight: bold;
+    color: rgb(77, 112, 96);
+}
+
+.p-detail .info-box .date {
+    color: rgb(153, 153, 153);
+}
+
+.p-detail .info-box .count-views {
+    padding-left: 17px;
+    background: url(../img/icon-read@2x.png) 0 0 no-repeat;
+    background-size: 16px 16px;
+    line-height: 18px;
+}
+
+.p-detail .info-box .count-praise {
+    margin-left: 10px;
+    padding-left: 17px;
+    background: url(../img/icon-like-n@2x.png) 0 0 no-repeat;
+    background-size: 16px;
+    line-height: 18px;
+}
+
+.p-detail .info-box .count-praise.praised {
+    background-image: url(../img/icon-like-s@2x.png);
+}
+
+.p-detail .content {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+}
+
+.p-detail .content p {
+    margin-bottom: 5px;
+}
+
+.p-detail .content img {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+img {
+    max-width: 100%;
+}
+
+/*.p-detail .content img {*/
+/*max-width: 100%;*/
+/*}*/
+
+.btn-praise,
+.btn-praise:hover,
+.btn-praise:active,
+.btn-praise:visited {
+    display: block;
+    width: 180px;
+    height: 80px;
+    margin: 20px auto;
+    background: url(../img/btn-like-n@2x.png) 0 0 no-repeat;
+    background-size: 100%;
+    font-size: 1.8rem;
+    line-height: 68px;
+    text-align: center;
+    color: #fff;
+}
+
+.btn-praise.praised {
+    background-image: url(../img/btn-like-d@2x.png);
+}
+
+/*Detail page end*/
+
+/*Market page start*/
+.p-market {
+    margin-top: 20px;
+    padding: 0 14px;
+    color: rgb(51, 51, 51);
+}
+
+.p-market .title-box {
+    position: relative;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgb(230, 230, 230);
+}
+
+.p-market .title-box .banner {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.p-market .title-box .info {
+    padding: 20px 10px 0;
+    font-size: 1.4rem;
+    background: url(../img/post@2x.png) right top no-repeat;
+    background-size: 135px 68px;
+}
+
+.p-market .title-box span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.p-market .title-box .address {
+    height: 16px;
+    margin-top: -1px;
+    padding: 0 7px;
+    background-color: rgb(77, 112, 96);
+    border-radius: 2px;
+    font-size: 1rem;
+    line-height: 16px;
+    color: #fff;
+}
+
+.p-market .title-box .price {
+    color: rgb(210, 164, 117);
+}
+
+.p-market .title-box .title {
+    margin-top: 7px;
+    font-size: 1.6rem;
+}
+
+.p-market .title-box .start-time {
+    position: absolute;
+    bottom: 120px;
+    right: 0;
+    height: 20px;
+    padding: 0 20px;
+    background-color: rgba(0, 0, 0, 0.65);
+    font-size: 1.2rem;
+    line-height: 20px;
+    color: #fff;
+}
+
+.p-market .content {
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid #ebebeb;
+    font-size: 1.4rem;
+    line-height: 24px;
+}
+
+.p-market .content h2 {
+    margin: 13px 0;
+    font-size: 1.7rem;
+}
+
+.p-market .content .info {
+    position: relative;
+    padding-left: 70px;
+    margin-bottom: 30px;
+}
+
+.p-market .content .info h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 14px;
+}
+
+.p-market .content div {
+    font-size: 1.4rem;
+    font-weight: bold;
+
+}
+
+.p-market .content p {
+    margin-bottom: 20px;
+}
+
+/*Market page end*/
+
+/*agreement page start*/
+.p-agreement {
+    padding: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(51, 51, 51);
+}
+
+.p-agreement h2 {
+    margin: 20px 0 10px;
+    font-size: 1.6rem;
+}
+
+/*agreement page end*/
+
+/*brand page start*/
+.p-brand {
+    margin-top: 20px;
+    padding: 0 14px;
+    color: rgb(51, 51, 51);
+}
+
+.p-brand .content {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    line-height: 24px;
+}
+
+.p-brand .content h2 {
+    margin: 13px 0;
+    font-size: 1.7rem;
+}
+
+.p-brand .content p {
+    margin-bottom: 10px;
+}
+
+.p-brand .content img {
+    padding: 5px 0;
+}
+
+/*brand page end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
