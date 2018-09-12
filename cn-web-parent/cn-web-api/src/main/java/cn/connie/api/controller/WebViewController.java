@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("webview")
+@RequestMapping("/webview")
 public class WebViewController {
 
     @RequestMapping("/agreement.html")

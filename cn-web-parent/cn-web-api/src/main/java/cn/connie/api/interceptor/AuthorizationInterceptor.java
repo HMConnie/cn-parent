@@ -17,7 +17,6 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws UnauthorizedException {
 
         HandlerMethod handlerMethod=(HandlerMethod)handler;
-
         NeedLogin needLogin=handlerMethod.getMethodAnnotation(NeedLogin.class);
         if (needLogin == null) {
             return true;

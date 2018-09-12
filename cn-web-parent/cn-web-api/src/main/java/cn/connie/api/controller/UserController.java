@@ -8,6 +8,7 @@ import cn.connie.business.to.OnlineUserBTO;
 import cn.connie.business.to.UserBTO;
 import cn.connie.common.annotation.NeedLogin;
 import cn.connie.common.exception.CustomException;
+import cn.connie.common.model.JsonModel;
 import cn.connie.common.type.Gender;
 import cn.connie.common.utils.DateUtils;
 import cn.connie.common.utils.ResponseUtils;
@@ -19,6 +20,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -115,5 +120,24 @@ public class UserController {
     @NeedLogin
     public void loginOut(OnlineUserBTO onlineUser) {
         userBusinessService.logout(onlineUser);
+    }
+
+
+    @RequestMapping(value = "/applicationJson", method = RequestMethod.POST)
+    @ResponseBody
+    public String applicationJson(@RequestBody JsonModel jsonModel) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", jsonModel.getName());
+        map.put("age", jsonModel.getAge());
+        return ResponseUtils.toSuccessResponse(map);
+    }
+
+    @RequestMapping(value = "/formUrlencoded", method = RequestMethod.POST)
+    @ResponseBody
+    public String formUrlencoded(@RequestParam("name") String name, @RequestParam("age") int age) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("age", age);
+        return ResponseUtils.toSuccessResponse(map);
     }
 }
