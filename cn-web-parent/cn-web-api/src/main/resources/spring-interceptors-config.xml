@@ -32,5 +32,21 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!--验证签名拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="cn.connie.api.interceptor.SignInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--验证请求头参数截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="cn.connie.api.interceptor.CheckParamsInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 
 </beans>
