@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserTO findById(String id) {
         User user = userMapper.selectByPrimaryKey(id);
-        String emojiConverterToAlias = EmojiUtil.emojiConverterToAlias(user.getNickname());
+        String emojiConverterToAlias = EmojiUtil.emojiConverterDecode(user.getNickname());
         user.setNickname(emojiConverterToAlias);
         return BeanConvertUtils.convert(user, UserTO.class);
     }
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         user.setUpdated(new Date());
 
         if (StringUtils.isNotBlank(user.getNickname())) {
-            String emojiConverterUnicodeStr = EmojiUtil.emojiConverterUnicodeStr(user.getNickname());
+            String emojiConverterUnicodeStr = EmojiUtil.emojiConverterEncode(user.getNickname());
             user.setNickname(emojiConverterUnicodeStr);
         }
         userMapper.insert(user);
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
             user.setAddress(userFrom.getAddress());
         }
         if (StringUtils.isNotBlank(userFrom.getNickname())) {
-            String emojiConverterUnicodeStr = EmojiUtil.emojiConverterUnicodeStr(userFrom.getNickname());
+            String emojiConverterUnicodeStr = EmojiUtil.emojiConverterEncode(userFrom.getNickname());
             user.setNickname(emojiConverterUnicodeStr);
         }
         if (StringUtils.isNotBlank(userFrom.getHeadPortrait())) {
@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userMapper.selectByExample(example);
         if (!users.isEmpty()) {
             User user = users.get(0);
-            String emojiConverterToAlias = EmojiUtil.emojiConverterToAlias(user.getNickname());
+            String emojiConverterToAlias = EmojiUtil.emojiConverterDecode(user.getNickname());
             user.setNickname(emojiConverterToAlias);
             return BeanConvertUtils.convert(user, UserTO.class);
         }

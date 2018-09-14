@@ -7,6 +7,6 @@
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:reference id="goodsService" interface="cn.connie.goods.service.GoodsService"
-                     version="1.0.0"/>
+                     version="1.0.0" check="false"/>
 
 </beans>

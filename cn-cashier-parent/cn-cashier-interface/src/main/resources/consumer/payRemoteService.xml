@@ -6,6 +6,6 @@
     http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:reference id="payService" interface="cn.connie.cashier.service.PayService" version="1.0.0"/>
+    <dubbo:reference id="payService" interface="cn.connie.cashier.service.PayService" version="1.0.0" check="false"/>
 
 </beans>

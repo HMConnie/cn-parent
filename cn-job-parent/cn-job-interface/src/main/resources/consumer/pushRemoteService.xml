@@ -6,6 +6,7 @@
     http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:reference id="pushRemoteService" interface="cn.connie.job.service.PushRemoteService" version="1.0.0"/>
+    <dubbo:reference id="pushRemoteService" interface="cn.connie.job.service.PushRemoteService" version="1.0.0"
+                     check="false"/>
 
 </beans>
