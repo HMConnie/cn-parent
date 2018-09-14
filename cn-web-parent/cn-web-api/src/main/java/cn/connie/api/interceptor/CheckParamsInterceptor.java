@@ -28,7 +28,7 @@ public class CheckParamsInterceptor implements HandlerInterceptor {
         if (StringUtils.isEmpty(sign) || StringUtils.isEmpty(timestamp) || StringUtils.isEmpty(clientType)
                 || StringUtils.isEmpty(appId) || StringUtils.isBlank(channelId)) {
             LOGGER.info("sign:" + sign + "_timestamp" + timestamp + "_clientType" + clientType + "_appid" + appId + "_channelId" + channelId);
-            throw new CustomException("request header parameter missing", "请求头参数缺少");
+            throw new CustomException("request header parameter missing", "请求头参数缺失");
         }
         return true;
     }
