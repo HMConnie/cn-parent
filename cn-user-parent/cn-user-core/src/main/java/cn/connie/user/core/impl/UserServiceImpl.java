@@ -1,5 +1,6 @@
 package cn.connie.user.core.impl;
 
+import cn.connie.common.utils.EmojiUtil;
 import cn.connie.common.utils.MiscUtils;
 import cn.connie.user.core.dao.UserMapper;
 import cn.connie.user.core.entity.User;
@@ -29,6 +30,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserTO findById(String id) {
         User user = userMapper.selectByPrimaryKey(id);
+        String emojiConverterToAlias = EmojiUtil.emojiConverterToAlias(user.getNickname());
+        user.setNickname(emojiConverterToAlias);
         return BeanConvertUtils.convert(user, UserTO.class);
     }
 
@@ -40,6 +43,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encodePwd);
         user.setCreated(new Date());
         user.setUpdated(new Date());
+
+        if (StringUtils.isNotBlank(user.getNickname())) {
+            String emojiConverterUnicodeStr = EmojiUtil.emojiConverterUnicodeStr(user.getNickname());
+            user.setNickname(emojiConverterUnicodeStr);
+        }
         userMapper.insert(user);
     }
 
@@ -49,7 +57,7 @@ public class UserServiceImpl implements UserService {
         UserExample.Criteria criteria = example.createCriteria();
         criteria.andMobileEqualTo(mobile);
         List<User> users = userMapper.selectByExample(example);
-        return users.size() > 0 && users.get(0) != null;
+        return !users.isEmpty();
     }
 
     @Override
@@ -65,7 +73,8 @@ public class UserServiceImpl implements UserService {
             user.setAddress(userFrom.getAddress());
         }
         if (StringUtils.isNotBlank(userFrom.getNickname())) {
-            user.setNickname(userFrom.getNickname());
+            String emojiConverterUnicodeStr = EmojiUtil.emojiConverterUnicodeStr(userFrom.getNickname());
+            user.setNickname(emojiConverterUnicodeStr);
         }
         if (StringUtils.isNotBlank(userFrom.getHeadPortrait())) {
             user.setHeadPortrait(userFrom.getHeadPortrait());
@@ -88,8 +97,11 @@ public class UserServiceImpl implements UserService {
         String encodePwd = MiscUtils.encodePassword(userFrom.getPassword());
         criteria.andPasswordEqualTo(encodePwd);
         List<User> users = userMapper.selectByExample(example);
-        if (users.size() > 0 && users.get(0) != null) {
-            return BeanConvertUtils.convert(users.get(0), UserTO.class);
+        if (!users.isEmpty()) {
+            User user = users.get(0);
+            String emojiConverterToAlias = EmojiUtil.emojiConverterToAlias(user.getNickname());
+            user.setNickname(emojiConverterToAlias);
+            return BeanConvertUtils.convert(user, UserTO.class);
         }
         return null;
     }
