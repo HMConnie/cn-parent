@@ -1,12 +1,12 @@
 package cn.connie.api.interceptor;
 
 import cn.connie.common.exception.CustomException;
+import cn.connie.common.utils.Base64Utils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -87,10 +87,11 @@ public class SignInterceptor implements HandlerInterceptor {
         for (Entry<String, String> param : map.entrySet()) {
             String base64Encode = param.getValue();
             if (!StringUtils.isEmpty(base64Encode)) {
-                base64Encode = Base64Utils.encodeToString(param.getValue().getBytes("UTF-8"));
+                base64Encode = Base64Utils.encode(param.getValue());
             }
             sb.append(param.getKey()).append("=").append(base64Encode).append("&");
         }
+
         sb.append("key").append("=").append(SIGN_KEY);
         String localSign = DigestUtils.md5Hex(sb.toString());
         System.out.println("签名串：" + sb);
