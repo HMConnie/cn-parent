@@ -21,7 +21,7 @@ public abstract class EmojiUtil {
      * @param emojiStr
      * @return
      */
-    public static String emojiConverterUnicodeStr(String emojiStr) {
+    public static String emojiConverterDecode(String emojiStr) {
         if(StringUtils.isBlank(emojiStr)){
             return  null;
         }
@@ -35,7 +35,7 @@ public abstract class EmojiUtil {
      * @param str
      * @return
      */
-    public static String emojiConverterToAlias(String str) {
+    public static String emojiConverterEncode(String str) {
         if(StringUtils.isBlank(str)){
             return  null;
         }
