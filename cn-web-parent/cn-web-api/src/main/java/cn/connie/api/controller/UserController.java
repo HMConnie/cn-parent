@@ -112,7 +112,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @NeedLogin

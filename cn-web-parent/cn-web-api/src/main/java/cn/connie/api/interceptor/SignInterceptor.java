@@ -6,13 +6,13 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -85,7 +85,11 @@ public class SignInterceptor implements HandlerInterceptor {
         TreeMap<String, String> map = new TreeMap<>(params);
         StringBuilder sb = new StringBuilder();
         for (Entry<String, String> param : map.entrySet()) {
-            sb.append(param.getKey()).append("=").append(URLDecoder.decode(param.getValue(), "UTF-8")).append("&");
+            String base64Encode = param.getValue();
+            if (!StringUtils.isEmpty(base64Encode)) {
+                base64Encode = Base64Utils.encodeToString(param.getValue().getBytes("UTF-8"));
+            }
+            sb.append(param.getKey()).append("=").append(base64Encode).append("&");
         }
         sb.append("key").append("=").append(SIGN_KEY);
         String localSign = DigestUtils.md5Hex(sb.toString());
@@ -94,6 +98,7 @@ public class SignInterceptor implements HandlerInterceptor {
         if (!sign.equals(localSign)) {
             return false;
         }
+
         return true;
     }
 
