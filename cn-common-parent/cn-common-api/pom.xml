@@ -37,6 +37,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.3.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>java-emoji-converter</artifactId>
+            <version>0.1.1</version>
+        </dependency>
     </dependencies>
 
 </project>
