@@ -5,14 +5,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-    <!-- 文件上传大小限制拦截器 -->
+    <!--验证请求头参数截器-->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="cn.connie.api.interceptor.FileUploadInterceptor">
-                <!--限制最大文件为10M -->
-                <property name="maxSize" value="10485760"/>
-            </bean>
+            <bean class="cn.connie.api.interceptor.CheckParamsInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--验证签名拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="cn.connie.api.interceptor.SignInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -32,19 +37,14 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <!--验证签名拦截器-->
+    <!-- 文件上传大小限制拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="cn.connie.api.interceptor.SignInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
-
-    <!--验证请求头参数截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="cn.connie.api.interceptor.CheckParamsInterceptor"/>
+            <bean class="cn.connie.api.interceptor.FileUploadInterceptor">
+                <!--限制最大文件为10M -->
+                <property name="maxSize" value="10485760"/>
+            </bean>
         </mvc:interceptor>
     </mvc:interceptors>
 
