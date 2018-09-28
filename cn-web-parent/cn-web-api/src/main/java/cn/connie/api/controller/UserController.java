@@ -30,13 +30,6 @@ public class UserController {
     @Resource
     private UserBusinessService userBusinessService;
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
-    @ResponseBody
-    public String getUser(@RequestParam("id") String id) throws CustomException {
-        UserBTO userBTO = userBusinessService.getUserById(id);
-        return ResponseUtils.toSuccessResponse(userBTO);
-    }
-
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
@@ -120,22 +113,4 @@ public class UserController {
         userBusinessService.logout(onlineUser);
     }
 
-
-    @RequestMapping(value = "/applicationJson", method = RequestMethod.POST)
-    @ResponseBody
-    public String applicationJson(@RequestBody JsonModel jsonModel) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", jsonModel.getName());
-        map.put("age", jsonModel.getAge());
-        return ResponseUtils.toSuccessResponse(map);
-    }
-
-    @RequestMapping(value = "/formUrlencoded", method = RequestMethod.POST)
-    @ResponseBody
-    public String formUrlencoded(@RequestParam("name") String name, @RequestParam("age") int age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("age", age);
-        return ResponseUtils.toSuccessResponse(map);
-    }
 }

@@ -85,10 +85,7 @@ public class SignInterceptor implements HandlerInterceptor {
         TreeMap<String, String> map = new TreeMap<>(params);
         StringBuilder sb = new StringBuilder();
         for (Entry<String, String> param : map.entrySet()) {
-            String base64Encode = param.getValue();
-            if (!StringUtils.isEmpty(base64Encode)) {
-                base64Encode = Base64Utils.encode(param.getValue());
-            }
+            String base64Encode = Base64Utils.encode(param.getValue());
             sb.append(param.getKey()).append("=").append(base64Encode).append("&");
         }
 
