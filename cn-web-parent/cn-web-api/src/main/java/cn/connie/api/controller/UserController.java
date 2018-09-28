@@ -8,7 +8,6 @@ import cn.connie.business.to.OnlineUserBTO;
 import cn.connie.business.to.UserBTO;
 import cn.connie.common.annotation.NeedLogin;
 import cn.connie.common.exception.CustomException;
-import cn.connie.common.model.JsonModel;
 import cn.connie.common.type.Gender;
 import cn.connie.common.utils.DateUtils;
 import cn.connie.common.utils.ResponseUtils;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
