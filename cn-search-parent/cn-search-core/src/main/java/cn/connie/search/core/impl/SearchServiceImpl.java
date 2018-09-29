@@ -12,8 +12,6 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -21,12 +19,10 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.sort.SortOrder;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,40 +32,16 @@ import java.util.Map;
 @Service
 public class SearchServiceImpl implements SearchService {
 
-    @Value("${elasticsearch.host}")
-    private String ELASTICSEARCH_HOST;
-    @Value("${elasticsearch.port}")
-    private String ELASTICSEARCH_PORT;
-    @Value("${elasticsearch.cluster.name}")
-    private String ELASTICSEARCH_CLUSTER_NAME;
-    @Value("${elasticsearch.node.name}")
-    private String ELASTICSEARCH_NODE_NAME;
+    @Autowired
+    private TransportClient transportClient;
 
-    static TransportClient transportClient = null;
-
-
-    TransportClient getClient() throws UnknownHostException {
-        if (transportClient == null) {
-            Settings settings = Settings.builder()
-                    .put("cluster.name", ELASTICSEARCH_CLUSTER_NAME)
-                    .put("node.name", ELASTICSEARCH_NODE_NAME)
-                    .build();
-            PreBuiltTransportClient preBuiltTransportClient = new PreBuiltTransportClient(settings);
-            InetSocketAddress inetSocketAddress = new InetSocketAddress(ELASTICSEARCH_HOST, Integer.parseInt(ELASTICSEARCH_PORT));
-            TransportAddress transportAddress = new TransportAddress(inetSocketAddress);
-            transportClient = preBuiltTransportClient.addTransportAddress(transportAddress);
-        }
-
-        return transportClient;
-    }
 
     @Override
     public SearchTO query(SearchCriteria searchCriteria) throws UnknownHostException {
         SearchTO dataEntity = new SearchTO();
         List list = new ArrayList();
-        TransportClient client = getClient();
 
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("search-data");
+        SearchRequestBuilder searchRequestBuilder = transportClient.prepareSearch("search-data");
 
         SearchBusinessType searchBusinessType = searchCriteria.getSearchBusinessType();
         BoolQueryBuilder must = QueryBuilders.boolQuery()
@@ -97,7 +69,6 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public void insertOrUpdate(SearchFrom searchEntity) throws IOException {
-        TransportClient client = getClient();
         XContentBuilder builder = XContentFactory.jsonBuilder().startObject()
                 .field("@timestamp", "2000-01-01T00:00:00.000Z")
                 .field("@version", "1")
@@ -109,7 +80,7 @@ public class SearchServiceImpl implements SearchService {
                 .endObject();
         //插入数据
 
-        IndexRequestBuilder search = client.prepareIndex("search-data", "Search",
+        IndexRequestBuilder search = transportClient.prepareIndex("search-data", "Search",
                 searchEntity.getSearchBusinessType().toString() + searchEntity.getId());
         IndexResponse indexResponse = search.setSource(builder).get();
         System.out.println("restStatus:" + indexResponse.status());
@@ -117,8 +88,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public void delete(String id, SearchBusinessType searchBusinessType) throws UnknownHostException {
-        TransportClient client = getClient();
-        DeleteResponse deleteResponse = client
+        DeleteResponse deleteResponse = transportClient
                 .prepareDelete("search-data", "Search", searchBusinessType.toString() + id).get();
         System.out.println("restStatus:" + deleteResponse.status());
     }
