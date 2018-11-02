@@ -1,11 +1,10 @@
 package cn.connie.api.controller;
 
+import cn.connie.business.from.AddOrUpdateAddressBFrom;
 import cn.connie.business.from.ModifyPwdFrom;
 import cn.connie.business.from.UserBFrom;
 import cn.connie.business.service.UserBusinessService;
-import cn.connie.business.to.LoginBTO;
-import cn.connie.business.to.OnlineUserBTO;
-import cn.connie.business.to.UserBTO;
+import cn.connie.business.to.*;
 import cn.connie.common.annotation.NeedLogin;
 import cn.connie.common.exception.CustomException;
 import cn.connie.common.type.Gender;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -109,5 +109,57 @@ public class UserController {
     public void loginOut(OnlineUserBTO onlineUser) {
         userBusinessService.logout(onlineUser);
     }
+
+    @RequestMapping(value = "/province", method = RequestMethod.GET)
+    @ResponseBody
+    public String province() {
+        List<ProvinceBTO> allProvince = userBusinessService.getAllProvince();
+        return ResponseUtils.toSuccessResponse(allProvince);
+    }
+
+    @RequestMapping(value = "/city", method = RequestMethod.GET)
+    @ResponseBody
+    public String city(@RequestParam("province") Long province) {
+        List<CityBTO> cityByProvince = userBusinessService.getCityByProvince(province);
+        return ResponseUtils.toSuccessResponse(cityByProvince);
+    }
+
+    @RequestMapping(value = "/district", method = RequestMethod.GET)
+    @ResponseBody
+    public String district(@RequestParam("city") Long city) {
+        List<DistrictBTO> districtByCity = userBusinessService.getDistrictByCity(city);
+        return ResponseUtils.toSuccessResponse(districtByCity);
+    }
+
+    @RequestMapping(value = "/addOrUpdateAddress", method = RequestMethod.POST)
+    @ResponseBody
+    @NeedLogin
+    public void addOrUpdateAddress(OnlineUserBTO onlineUserBTO,
+                                   @RequestParam(value = "addressId", required = false) String addressId,
+                                   @RequestParam("name") String name,
+                                   @RequestParam("mobile") String mobile,
+                                   @RequestParam("province") String province,
+                                   @RequestParam("city") String city,
+                                   @RequestParam("district") String district,
+                                   @RequestParam("details") String details) throws CustomException {
+        AddOrUpdateAddressBFrom addOrUpdateAddressBFrom = new AddOrUpdateAddressBFrom();
+        addOrUpdateAddressBFrom.setUserId(onlineUserBTO.getUserId());
+        addOrUpdateAddressBFrom.setAddressId(addressId);
+        addOrUpdateAddressBFrom.setName(name);
+        addOrUpdateAddressBFrom.setMobile(mobile);
+        addOrUpdateAddressBFrom.setProvince(province);
+        addOrUpdateAddressBFrom.setCity(city);
+        addOrUpdateAddressBFrom.setDistrict(district);
+        addOrUpdateAddressBFrom.setDetails(details);
+        userBusinessService.addOrUpdateAddress(addOrUpdateAddressBFrom);
+    }
+
+    @RequestMapping(value = "/addressList", method = RequestMethod.GET)
+    @ResponseBody
+    @NeedLogin
+    public String getAllAddress(OnlineUserBTO onlineUserBTO) {
+        return ResponseUtils.toSuccessResponse(userBusinessService.getAllAddressByUserId(onlineUserBTO.getUserId()));
+    }
+
 
 }
